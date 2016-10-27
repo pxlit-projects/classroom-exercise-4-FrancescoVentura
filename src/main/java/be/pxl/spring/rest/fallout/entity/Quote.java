@@ -43,4 +43,13 @@ public class Quote {
     public String getQuotation() {
         return quotation;
     }
+
+    public boolean equals(Quote quote) {
+        return this.quotation.equals(quote.quotation);
+    }
+
+    @Override
+    public int hashCode() {
+        return super.hashCode();
+    }
 }

@@ -12,6 +12,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static be.pxl.spring.rest.fallout.quote.QuoteTestBuilder.aQuote;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -42,6 +43,14 @@ public class QuoteRepositoryIntegrationTest {
 
     @Test
     public void findByQuotation_OnlyReturnsQuotesByMatchingQuotes() throws Exception {
-        // Exercise 2
+        // copy pasta
+        Quote piperQuote1 = aQuote().withAuthor("Piper").withQuotation("quotation").build();
+        Quote piperQuote2 = aQuote().withAuthor("Piper").withQuotation("quotation3").build();
+        Quote otherQuote = aQuote().withAuthor("Jamie").withQuotation("quotation2").build();
+        quoteRepository.save(Arrays.asList(piperQuote1, piperQuote2, otherQuote));
+
+        List<Quote> quotes = quoteRepository.findByQuotation("quotation");
+
+        assertThat(quotes.stream().anyMatch(s -> s.equals(piperQuote1))).isTrue();
     }
 }

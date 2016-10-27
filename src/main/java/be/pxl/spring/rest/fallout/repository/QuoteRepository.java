@@ -12,4 +12,6 @@ import java.util.UUID;
 @Repository
 public interface QuoteRepository extends CrudRepository<Quote,UUID> {
     List<Quote> findByAuthor(String author);
+
+    List<Quote> findByQuotation(String Quote);
 }
