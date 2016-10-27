@@ -1,4 +1,4 @@
-package be.pxl.spring.rest.fallout.quote;
+package be.pxl.spring.rest.fallout.entity;
 
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.Type;
@@ -20,6 +20,7 @@ public class Quote {
     @GeneratedValue(generator = "uuid-gen")
     @Type(type = "pg-uuid")
     private UUID id;
+
     private String author;
     private String quotation;
 

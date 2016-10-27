@@ -1,5 +1,6 @@
 package be.pxl.spring.rest.fallout.quote;
 
+import be.pxl.spring.rest.fallout.entity.Quote;
 import org.springframework.test.util.ReflectionTestUtils;
 
 import java.util.UUID;

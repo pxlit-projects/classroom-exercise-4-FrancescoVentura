@@ -1,15 +1,14 @@
-package be.pxl.spring.rest.fallout.quote;
+package be.pxl.spring.rest.fallout.controller;
 
+import be.pxl.spring.rest.fallout.quote.QuoteAssembler;
+import be.pxl.spring.rest.fallout.quote.QuoteR;
+import be.pxl.spring.rest.fallout.repository.QuoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.net.URI;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.UUID;
-
-import static java.util.stream.Collectors.toList;
 
 @RequestMapping(MemorableQuotesController.QUOTE_BASE_URL)
 @RestController
@@ -17,9 +16,12 @@ public class MemorableQuotesController {
 
     public static final String QUOTE_BASE_URL = "/quote";
 
+    public MemorableQuotesController() {
+    }
+
     @Autowired
     private QuoteRepository quoteRepository;
-    @Autowired
+    //@Autowired
     private QuoteAssembler quoteAssembler;
 
     @RequestMapping(method = RequestMethod.GET)

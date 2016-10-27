@@ -1,11 +1,12 @@
 package be.pxl.spring.rest.fallout.quote;
 
 import be.pxl.spring.rest.fallout.Application;
-import org.hamcrest.Matchers;
+import be.pxl.spring.rest.fallout.controller.MemorableQuotesController;
+import be.pxl.spring.rest.fallout.entity.Quote;
+import be.pxl.spring.rest.fallout.repository.QuoteRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.internal.matchers.Contains;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.SpringApplicationConfiguration;
 import org.springframework.http.MediaType;
@@ -20,11 +21,9 @@ import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 import org.springframework.web.context.WebApplicationContext;
 
 import java.io.IOException;
-import java.net.URI;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
-import java.util.stream.Stream;
 
 import static be.pxl.spring.rest.fallout.quote.QuoteTestBuilder.aDefaultQuote;
 import static be.pxl.spring.rest.fallout.quote.QuoteTestBuilder.aQuote;
@@ -34,7 +33,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.header;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -122,7 +120,7 @@ public class MemorableQuotesControllerIntegrationTest {
         List<String> locationPathParams = Arrays.asList(result.getResponse().getHeader("location").split("/"));
         String id = locationPathParams.get(locationPathParams.size()-1);
 
-        List<Quote> quotes = quoteRepository.findAll();
+        List<Quote> quotes = (List<Quote>) quoteRepository.findAll();
         assertThat(quotes).extracting(Quote::getId).containsOnly(UUID.fromString(id));
         assertThat(quotes).extracting(Quote::getQuotation).containsOnly("Niks verdikt! M'n trui is gekrompen!");
     }

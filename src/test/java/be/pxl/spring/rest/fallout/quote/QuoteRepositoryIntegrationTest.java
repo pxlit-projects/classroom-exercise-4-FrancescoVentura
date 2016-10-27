@@ -1,6 +1,8 @@
 package be.pxl.spring.rest.fallout.quote;
 
 import be.pxl.spring.rest.fallout.Application;
+import be.pxl.spring.rest.fallout.entity.Quote;
+import be.pxl.spring.rest.fallout.repository.QuoteRepository;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
